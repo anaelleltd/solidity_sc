@@ -1,59 +1,53 @@
 pragma solidity ^0.4.0;
 
-interface Regulator {
-    function checkValue(uint amount) constant returns (bool);
-    function loan() constant returns (bool);
-}
-
-contract Bank is Regulator {
+contract Bank {
     uint private value;
     
-    function Bank(uint amount){
+    function Bank(uint amount) public {
         value = amount;
     }
     
-    function deposit(uint amount) {
+    function deposit(uint amount) public {
         value += amount;
     }
     
-    function withdraw(uint amount) {
+    function withdraw(uint amount) public {
         if (checkValue(amount)) {
-            value >= amount;
+            value -= amount;
         }
     }
     
-    function balance() constant returns (uint){
+    function balance() public constant returns (uint){
         return value;
     }
     
-    function checkValue() constant returns (bool){
-        return amount <= value;
+    function checkValue(uint amount) public constant returns (bool){
+        return value >= amount;
     }
     
-    function loan() constant returns (bool){
+    function loan() public constant returns (bool){
         return value > 0;
     }
-
+}
 
 contract MyFirstContract is Bank(10){
     string private name;
     uint private age;
     
-    function setName(string newName){
+    function setName(string newName) public {
         name = newName;
     }
     
-    function getName() constant returns (string){
+    function getName() public constant returns (string){
         return name;
     }
     
-    function setAge(uint newAge) {
+    function setAge(uint newAge) public {
         age = newAge;
     }
     
-    function getAge() constant returns (uint){
+    function getAge() public constant returns (uint){
         return age;
     }
 
-    
 }
