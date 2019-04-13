@@ -1,6 +1,6 @@
 pragma solidity ^0.4.0;
 
-contract myfirstcontract {
+contract MyFirstContract {
     string private name;
     uint private age;
     
